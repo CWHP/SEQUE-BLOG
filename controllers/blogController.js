@@ -1,7 +1,7 @@
 import Project from "../models/article.js";
 
 /* PROJECT OVERVIEW */
-export const renderProject = async (req, res) => {
+export const renderBlog = async (req, res) => {
   try {
     const projects = await Project.findAll();
     res.render("home", { projects: projects, isLoggedIn: global.isLoggedIn });
@@ -11,11 +11,11 @@ export const renderProject = async (req, res) => {
   }
 };
 
-export const renderEditProject = async (req, res) => {
+export const renderEditArticle = async (req, res) => {
   try {
     const project = await Project.findByPk(req.params.id);
     if (project) {
-      res.render("edit-project", {
+      res.render("edit-article", {
         project: project,
         isLoggedIn: global.isLoggedIn,
       });
@@ -28,7 +28,7 @@ export const renderEditProject = async (req, res) => {
   }
 };
 
-export const editProject = async (req, res) => {
+export const editArticle = async (req, res) => {
   try {
     const { projectTitle, projectType, overview } = req.body;
     const image = req.file.destination + "/" + req.file.filename;
@@ -54,16 +54,16 @@ export const editProject = async (req, res) => {
   }
 };
 
-export const renderAddProject = (req, res) => {
+export const renderAddArticle = (req, res) => {
   try {
-    res.render("add-project", { isLoggedIn: global.isLoggedIn });
+    res.render("add-article", { isLoggedIn: global.isLoggedIn });
   } catch (error) {
     console.error(error);
     res.status(500).redirect("/error");
   }
 };
 
-export const addProject = async (req, res) => {
+export const addArticle = async (req, res) => {
   try {
     const { projectTitle, projectType, overview } = req.body;
     const image = req.file.destination + "/" + req.file.filename;
@@ -80,7 +80,7 @@ export const addProject = async (req, res) => {
   }
 };
 
-export const deleteProject = async (req, res) => {
+export const deleteArticle = async (req, res) => {
   try {
     await Project.destroy({ where: { id: req.params.id } });
     res.redirect("/");
@@ -90,8 +90,8 @@ export const deleteProject = async (req, res) => {
   }
 };
 
-/* PROJECT DETAILS */
-export const renderProjectDetail = async (req, res) => {
+/* ARTICLE CONTENT */
+export const renderArticleContent = async (req, res) => {
   try {
     res.status(200).send("DetailPage");
   } catch (error) {
@@ -100,7 +100,7 @@ export const renderProjectDetail = async (req, res) => {
   }
 };
 
-export const renderEditPojectDetail = async (req, res) => {
+export const renderEditArticleContent = async (req, res) => {
   try {
     res.status(200).send("EditProjectDetailPage");
   } catch (error) {
@@ -109,7 +109,7 @@ export const renderEditPojectDetail = async (req, res) => {
   }
 };
 
-export const editProjectDetail = async (req, res) => {
+export const editArticleContent = async (req, res) => {
   try {
     res.send(200).send("EditProjectDetail");
   } catch (error) {
