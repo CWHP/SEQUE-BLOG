@@ -1,4 +1,4 @@
-import Project from "../models/project.js";
+import Project from "../models/article.js";
 
 /* PROJECT OVERVIEW */
 export const renderProject = async (req, res) => {
