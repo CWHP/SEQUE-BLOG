@@ -66,14 +66,16 @@ export const renderAddArticle = (req, res) => {
 
 export const addArticle = async (req, res) => {
   try {
-    const { title, category, overview, content } = req.body;
+    const { title, category, overview } = req.body;
+    let { content } = req.body;
     const image = req.file.destination + "/" + req.file.filename;
+    content = "a";
     await Article.create({
       title,
       category,
       overview,
       image,
-      content
+      content,
     });
     res.redirect("/");
   } catch (error) {
@@ -95,7 +97,7 @@ export const deleteArticle = async (req, res) => {
 /* ARTICLE CONTENT */
 export const renderArticleContent = async (req, res) => {
   try {
-    res.render('detail');
+    res.render("detail");
   } catch (error) {
     console.error(error);
     res.status(500).redirect("/error");
@@ -104,7 +106,7 @@ export const renderArticleContent = async (req, res) => {
 
 export const renderEditArticleContent = async (req, res) => {
   try {
-    res.render('edit-detail');
+    res.render("edit-detail");
   } catch (error) {
     console.error(error);
     res.status(500).redirect("/error");
