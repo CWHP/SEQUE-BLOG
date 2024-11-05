@@ -1,8 +1,8 @@
 import DataTypes from "sequelize";
 import sequelize from "../utils/database.js";
 
-const Project = sequelize.define(
-  "project",
+const Article = sequelize.define(
+  "article",
   {
     id: {
       type: DataTypes.INTEGER,
@@ -10,12 +10,12 @@ const Project = sequelize.define(
       primaryKey: true,
       allowNull: false,
     },
-    projectTitle: {
+    title: {
       type: DataTypes.STRING,
       allowNull: false,
     },
 
-    projectType: {
+    category: {
       type: DataTypes.STRING,
       allowNull: false,
     },
@@ -27,8 +27,12 @@ const Project = sequelize.define(
       type: DataTypes.STRING,
       allowNull: false,
     },
+    content: {
+      type: DataTypes.STRING,
+      allowNull: false
+    }
   },
-  { tableName: "projects", timestamps: false }
+  { tableName: "articles" }
 );
 
-export default Project;
+export default Article;
