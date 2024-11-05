@@ -29,8 +29,8 @@ const Article = sequelize.define(
     },
     content: {
       type: DataTypes.STRING,
-      allowNull: true
-    }
+      allowNull: false,
+    },
   },
   { tableName: "articles" }
 );
