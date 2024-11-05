@@ -10,18 +10,18 @@
 
     <div class="flex items-center justify-center mt-8">
         <form class="bg-white shadow-lg rounded-lg p-6 w-1/3" action="/add-article" method="post" enctype="multipart/form-data">
-            <h2 class="text-2xl font-bold text-center mb-6">Add Project</h2>
+            <h2 class="text-2xl font-bold text-center mb-6">Add Article</h2>
 
             <div class="space-y-4">
                 <div class="grid grid-cols-8 gap-4">
                     <div class="col-span-8 md:col-span-6">
-                        <label class="block text-lg font-semibold mb-1">Project Title</label>
-                        <input type="text" name="projectTitle" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" placeholder="Enter project title" required />
+                        <label class="block text-lg font-semibold mb-1">Title</label>
+                        <input type="text" name="title" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" placeholder="Enter project title" required />
                     </div>
 
                     <div class="col-span-8 md:col-span-2">
-                        <label class="block text-lg font-semibold mb-1">Type</label>
-                        <select name="projectType" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" required>
+                        <label class="block text-lg font-semibold mb-1">Category</label>
+                        <select name="category" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" required>
                             <option value="" selected disabled>Select type</option>
                             <option value="Web Application">Web Application</option>
                             <option value="Website">Website</option>
@@ -32,7 +32,7 @@
                 </div>
 
                 <div>
-                    <label class="block text-lg font-semibold mb-1">Project Overview</label>
+                    <label class="block text-lg font-semibold mb-1">Article Overview</label>
                     <textarea name="overview" class="w-full px-4 py-2 border border-gray-300 rounded focus:outline-none focus:border-blue-500" rows="5" placeholder="Write project overview..." required></textarea>
                 </div>
 
@@ -43,7 +43,7 @@
             </div>
 
             <button class="w-full mt-4 bg-blue-500 text-white py-2 rounded hover:bg-blue-600 transition-colors text-lg font-semibold" type="submit">
-                Add Project
+                Add Article
             </button>
         </form>
     </div>
