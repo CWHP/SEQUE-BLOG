@@ -1,10 +1,10 @@
-import Project from "../models/project.js";
+import Article from "../models/article.js";
 
 /* PROJECT OVERVIEW */
 export const renderBlog = async (req, res) => {
   try {
-    const projects = await Project.findAll();
-    res.render("home", { projects: projects, isLoggedIn: global.isLoggedIn });
+    const articles = await Article.findAll();
+    res.render("home", { articles: articles, isLoggedIn: global.isLoggedIn });
   } catch (error) {
     console.error(error);
     res.status(500).redirect("/error");
@@ -13,10 +13,10 @@ export const renderBlog = async (req, res) => {
 
 export const renderEditArticle = async (req, res) => {
   try {
-    const project = await Project.findByPk(req.params.id);
-    if (project) {
+    const article = await Article.findByPk(req.params.id);
+    if (article) {
       res.render("edit-article", {
-        project: project,
+        article: article,
         isLoggedIn: global.isLoggedIn,
       });
     } else {
@@ -30,22 +30,23 @@ export const renderEditArticle = async (req, res) => {
 
 export const editArticle = async (req, res) => {
   try {
-    const { projectTitle, projectType, overview } = req.body;
+    const { title, category, overview, content } = req.body;
     const image = req.file.destination + "/" + req.file.filename;
     const id = req.params.id;
 
-    const project = await Project.findByPk(id);
+    const article = await Article.findByPk(id);
 
-    if (!project) {
+    if (!article) {
       return res.status(404).send("Not found");
     }
 
-    project.projectTitle = projectTitle;
-    project.projectType = projectType;
-    project.overview = overview;
-    project.image = image;
+    article.title = title;
+    article.category = category;
+    article.overview = overview;
+    article.image = image;
+    article.content = content;
 
-    await project.save();
+    await article.save();
 
     res.redirect("/");
   } catch (error) {
@@ -65,13 +66,14 @@ export const renderAddArticle = (req, res) => {
 
 export const addArticle = async (req, res) => {
   try {
-    const { projectTitle, projectType, overview } = req.body;
+    const { title, category, overview, content } = req.body;
     const image = req.file.destination + "/" + req.file.filename;
-    await Project.create({
-      projectTitle,
-      projectType,
+    await Article.create({
+      title,
+      category,
       overview,
       image,
+      content
     });
     res.redirect("/");
   } catch (error) {
@@ -82,7 +84,7 @@ export const addArticle = async (req, res) => {
 
 export const deleteArticle = async (req, res) => {
   try {
-    await Project.destroy({ where: { id: req.params.id } });
+    await Article.destroy({ where: { id: req.params.id } });
     res.redirect("/");
   } catch (error) {
     console.error(error);
