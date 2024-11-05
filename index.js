@@ -71,7 +71,7 @@ sequelize
     console.error(error);
   });
 
-sequelize.sync().then(() => {
+sequelize.sync({force:true}).then(() => {
   app.listen(PORT, () => {
     console.log("Server is running");
   });

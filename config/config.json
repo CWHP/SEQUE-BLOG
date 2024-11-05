@@ -1,0 +1,14 @@
+{
+  "development": {
+    "url": "postgresql://postgres:CkyPwokIOnGxijVSpSHFMTBkoddhnzPW@junction.proxy.rlwy.net:41389/railway",
+    "dialect": "postgres"
+  },
+  "test": {
+    "url": "postgresql://postgres:CkyPwokIOnGxijVSpSHFMTBkoddhnzPW@junction.proxy.rlwy.net:41389/railway",
+    "dialect": "postgres"
+  },
+  "production": {
+    "url": "postgresql://postgres:CkyPwokIOnGxijVSpSHFMTBkoddhnzPW@junction.proxy.rlwy.net:41389/railway",
+    "dialect": "postgres"
+  }
+}
